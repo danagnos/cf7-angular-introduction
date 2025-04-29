@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { EPerson } from 'src/app/shared/interface/eperson';
 import { sortBy } from 'lodash-es';
+import { StringTokenKind } from '@angular/compiler';
 
 @Component({
   selector: 'app-simple-datatable',
@@ -19,11 +20,32 @@ export class SimpleDatatableComponent {
     education:'none'
   }
 
-  sortData(sortKey: keyof EPerson) {
+  sortData(sortKey: keyof EPerson): void {
     console.log(sortKey);
+    if (this.sortOrder[sortKey]==='asc'){
+      this.sortOrder[sortKey] = 'desc'
+      this.data = sortBy(this.data, sortKey).reverse();
+    } else {
+      this.sortOrder[sortKey] = 'asc'
+      this.data = sortBy(this.data, sortKey);
+    }
+    
+
+    for (let key in this.sortOrder){
+      if (key !== sortKey) {
+        this.sortOrder[key as keyof EPerson] = 'none'
+      }
+    }
+    console.log(this.sortOrder);
   }
 
-  onPersonClicked(person:EPerson){
+  sortSign(sortKey: keyof EPerson): string {
+    if (this.sortOrder[sortKey]==='asc') return '\u2191'
+    else if (this.sortOrder[sortKey]==='desc') return '\u2193'
+    else return ''
+  }
+
+  onPersonClicked(person:EPerson) {
     console.log("Person>>",person)
   }
 }
