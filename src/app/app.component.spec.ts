@@ -1,29 +1,42 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+// import { PersonTableComponent } from './components/person-table/person-table.component';
+// import { Person } from './shared/interfaces/person';
+// import { EventBindExampleComponent } from './components/event-bind-example/event-bind-example.component';
+import { ListGroupMenuComponent } from './components/list-group-menu/list-group-menu.component';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
-  });
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, ListGroupMenuComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+export class AppComponent {
+  // name = 'Dimitris';
 
-  it(`should have the 'angular-introduction' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-introduction');
-  });
+  // // Step 1: One way binding of data
+  // person = {
+  //   givenName: 'Dimitris',
+  //   surName: 'Anagnostopoulos',
+  //   age:32,
+  //   email:'dimitris_anagn@hotmail.gr'
+  // }
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-introduction');
-  });
-});
+  // Step 3: Component Input
+  // person0: Person = {
+  //   givenName: "Christodoulos",
+  //   surName: "Fragkoudakis",
+  //   age:55,
+  //   email: "chfrag@aueb.gr",
+  //   address: "Athens, Greece"
+  // }
+
+  // person1: Person = {
+  //   givenName: "John",
+  //   surName: "Doe",
+  //   age: 32,
+  //   email: "john@example.com",
+  //   address: "New York, USA"
+  // }
+}
